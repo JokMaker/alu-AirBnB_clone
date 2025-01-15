@@ -6,6 +6,7 @@ Custom base class for the entire project
 from uuid import uuid4
 from datetime import datetime
 import models
+import models
 
 class BaseModel:
     """Base class for all models in the AirBnb console project."""
@@ -15,9 +16,10 @@ class BaseModel:
         DATE_TIME_FORMAT = '%Y-%m-%dT%H:%M:%S.%f'
         if not kwargs:
             self.id = str(uuid4())
-            self.created_at = datetime.utcnow()
-            self.updated_at = datetime.utcnow()
+            self.created_at = datetime.now()
+            self.updated_at = datetime.now()
             models.storage.new(self)
+
         else:
             for key, value in kwargs.items():
                 if key in ("updated_at", "created_at"):
@@ -33,8 +35,9 @@ class BaseModel:
 
     def save(self):
         """Update 'updated_at' with current datetime."""
-        self.updated_at = datetime.utcnow()
+        self.updated_at = datetime.now()
         models.storage.save()
+
 
     def to_dict(self):
         """Return a dictionary representation of the instance."""
