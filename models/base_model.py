@@ -5,6 +5,7 @@ Custom base class for the entire project
 
 from uuid import uuid4
 from datetime import datetime
+from models.user import User
 import models
 import models
 
